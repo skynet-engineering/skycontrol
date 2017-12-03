@@ -31,4 +31,22 @@ Start the backend server with `make serve`.
 
 The frontend is a React/Redux-based SPA, entirely decoupled from the backend. The project is in directory `frontend/`.
 
-Build the frontend into a standalone HTML file served by the backend server with `npm run build`, or `npm run build-watch` to auto-rebuild on file changes.
+To install frontend dependencies:
+
+```bash
+$ npm install  # or yarn
+```
+
+To build the frontend into a self-contained HTML file:
+
+```bash
+$ npm run build
+# For a minified and uglified production bundle (recommended)
+$ NODE_ENV=production npm run build
+```
+
+For development, you may optionally choose to serve the frontend in a standalone server independent of Skycontrol with automatic re-building on file changes and hot reloading on the client courtesy of `webpack-dev-server`:
+
+```bash
+$ npm run start
+```
