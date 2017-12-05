@@ -33,7 +33,10 @@ class MissionControlContainer extends Component {
     startResource: PropTypes.func.isRequired,
     endResource: PropTypes.func.isRequired,
     clearMission: PropTypes.func.isRequired,
-    version: PropTypes.shape({
+    skyserveVersion: PropTypes.shape({
+      data: PropTypes.object,
+    }).isRequired,
+    skymissionVersion: PropTypes.shape({
       data: PropTypes.object,
     }).isRequired,
   };
@@ -77,11 +80,13 @@ class MissionControlContainer extends Component {
       droneIP,
       mission,
       clearMission,
-      version: { data = {} },
+      skymissionVersion: { data: skymissionVersionData = {} },
+      skyserveVersion: { data: skyserveVersionData = {} },
     } = this.props;
     const { tab, response } = this.state;
 
-    const version = data.version || '?.?.?';
+    const skyserveVersion = skyserveVersionData.version || '?.?.?';
+    const skymissionVersion = skymissionVersionData.version || '?.?.?';
 
     const controlContainers = {
       [TAB_COMMAND]: (
@@ -132,7 +137,7 @@ class MissionControlContainer extends Component {
           <Text size="beta">
             {mission}
           </Text>
-          {[`Skymission ${version}`, 'Skyserve OK'].map((tag) => (
+          {[`Skyserve ${skyserveVersion}`, `Skymission ${skymissionVersion}`].map((tag) => (
             <Spacing key={tag} size="tiny" right inline>
               <Tag
                 key={tag}
@@ -171,7 +176,13 @@ const mapDispatchToProps = (dispatch) => ({
 export default compose(
   connect(null, mapDispatchToProps),
   withResource({
-    key: 'version',
+    key: 'skyserveVersion',
+    endpoint: '/api/skyserve/version',
+    method: 'POST',
+    data: ({ droneIP }) => ({ drone_ip: droneIP }),
+  }),
+  withResource({
+    key: 'skymissionVersion',
     endpoint: '/api/skymission/_/version',
     method: 'POST',
     data: ({ droneIP, mission }) => ({ drone_ip: droneIP, mission_id: mission }),
