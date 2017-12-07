@@ -31,6 +31,14 @@ Start the backend server with `make serve`.
 
 The frontend is a React/Redux-based SPA, entirely decoupled from the backend. The project is in directory `frontend/`.
 
+First, retrieve (or generate) your Google Maps Javascript API key from the [Google Developers API Console](https://console.developers.google.com/apis/dashboard), then ensure the Google Maps API key secret is in file `frontend/.env` with shape:
+
+```
+GOOGLE_MAPS_API_KEY=<your API key here>
+```
+
+You can alternatively build the frontend application passing `GOOGLE_MAPS_API_KEY` as an environment variable.
+
 To install frontend dependencies:
 
 ```bash

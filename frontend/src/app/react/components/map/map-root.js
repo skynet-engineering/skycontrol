@@ -5,7 +5,6 @@ import customStyles from 'app/react/components/map/map-style';
 import Skynet from 'app/react/components/logo/skynet';
 import { MAP_TYPE_SIMPLE, MAP_TYPE_SATELLITE } from 'app/redux/reducers/options';
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDCqxNAdHLQfu7bf3sX_gwQUddXLv8QTJU';
 const RICE_GPS_COORDINATES = [29.717393, -95.405422];
 
 export default class MapRoot extends Component {
@@ -53,7 +52,7 @@ export default class MapRoot extends Component {
     return (
       <div style={style}>
         <GoogleMap
-          bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY, language: 'en' }}
+          bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY, language: 'en' }}
           center={RICE_GPS_COORDINATES}
           zoom={16}
           onChildClick={this.handleMarkerClick}
