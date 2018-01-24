@@ -4,7 +4,7 @@ import { LoadingBar } from 'react-elemental';
 
 const Progress = ({ isLoading }) => (
   <div style={{ position: 'absolute', width: '100%', zIndex: 2 }}>
-    {isLoading && <LoadingBar thickness={3} position="absolute" />}
+    {isLoading && <LoadingBar thickness={3} style={{ position: 'absolute' }} />}
   </div>
 );
 

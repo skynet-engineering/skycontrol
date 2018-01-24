@@ -52,7 +52,7 @@ export default class MapRoot extends Component {
     return (
       <div style={style}>
         <GoogleMap
-          bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY, language: 'en' }}
+          bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY, language: 'en', region: 'us' }}
           center={RICE_GPS_COORDINATES}
           zoom={16}
           onChildClick={this.handleMarkerClick}

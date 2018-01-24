@@ -25,23 +25,26 @@ export default class BackNav extends Component {
     };
 
     return (
-      <Link
-        onMouseEnter={this.handleHoverStateChange(true)}
-        onMouseLeave={this.handleHoverStateChange(false)}
-        onClick={onClick}
-        plain
-      >
-        <div style={{ display: 'inline-block', width: '20px' }}>
-          <Text color="primary" inline>
-            <span style={arrowStyle}>
-              <KeyboardArrowLeft />
-            </span>
+      <Text color="primary" inline>
+        <Link
+          type="plain"
+          activeColor="black"
+          onMouseEnter={this.handleHoverStateChange(true)}
+          onMouseLeave={this.handleHoverStateChange(false)}
+          onClick={onClick}
+        >
+          <div style={{ display: 'inline-block', width: '20px' }}>
+            <Text color="inherit" inline>
+              <span style={arrowStyle}>
+                <KeyboardArrowLeft />
+              </span>
+            </Text>
+          </div>
+          <Text color="inherit" size="lambda" uppercase bold inline>
+            Go back
           </Text>
-        </div>
-        <Text color="primary" size="lambda" uppercase bold inline>
-          Go back
-        </Text>
-      </Link>
+        </Link>
+      </Text>
     );
   }
 }

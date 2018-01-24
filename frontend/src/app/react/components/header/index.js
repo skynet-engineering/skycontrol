@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { colors, Button, Spacing, Spinner, Text } from 'react-elemental';
+import { colors, Button, Pulsator, Spacing, Text } from 'react-elemental';
 import Skycontrol from 'app/react/components/logo/skycontrol';
 import { MAP_TYPE_SIMPLE } from 'app/redux/reducers/options';
 
@@ -39,7 +39,11 @@ const Header = ({
               <Spacing bottom>
                 <div style={{ alignItems: 'center', display: 'flex' }}>
                   <Spacing size="small" right>
-                    <Spinner color={droneIP ? colors.green : colors.red} size="gamma" transparent />
+                    <Pulsator
+                      color={droneIP ? colors.green : colors.red}
+                      size="gamma"
+                      transparent
+                    />
                   </Spacing>
                   <Text color={colors.gray30} inline>
                     {droneIP ? `Connected: ${droneIP}` : 'No drone selected'}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Spacing, Spinner, Text } from 'react-elemental';
+import { Pulsator, Spacing, Text } from 'react-elemental';
 
 export default class Marker extends Component {
   static propTypes = {
@@ -24,7 +24,7 @@ export default class Marker extends Component {
         onMouseEnter={this.handleHoverStateChange(true)}
         onMouseLeave={this.handleHoverStateChange(false)}
       >
-        <Spinner color={color} size="gamma" transparent />
+        <Pulsator color={color} size="gamma" transparent />
 
         <div
           style={{

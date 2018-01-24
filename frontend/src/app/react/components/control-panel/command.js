@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { colors, Button, SelectList, Spacing, Text, TextField } from 'react-elemental';
+import { colors, Button, Label, SelectList, Spacing, Text, TextField } from 'react-elemental';
 import withForm from 'app/react/hoc/with-form';
 
 const ENDPOINTS_TABLE_HEADERS = [
@@ -37,14 +37,14 @@ class Command extends Component {
         JSON.parse(json);
         return true;
       } catch (e) {
-        return false;
+        return json === '';
       }
     })();
 
     return (
       <div>
         <Spacing bottom>
-          <Spacing bottom>
+          <Spacing size="small" bottom>
             <Text color="primary" secondary bold uppercase>Available endpoints</Text>
           </Spacing>
           <table style={{ borderCollapse: 'separate', borderSpacing: '0 8px' }}>
@@ -86,9 +86,11 @@ class Command extends Component {
             </Spacing>
 
             <Spacing bottom>
-              <SelectList
+              <Label
                 label="Endpoint"
                 sublabel="One of the endpoints above for an outgoing request."
+              />
+              <SelectList
                 placeholder="Select an endpoint..."
                 width="400px"
                 onChange={handleChange('endpoint')}
@@ -101,9 +103,11 @@ class Command extends Component {
             </Spacing>
 
             <Spacing bottom>
-              <TextField
+              <Label
                 label="JSON payload"
                 sublabel="Input data to supply to the endpoint."
+              />
+              <TextField
                 onChange={handleChange('json')}
                 value={json}
                 error={isPayloadValid ? null : 'JSON is invalid.'}
@@ -114,7 +118,7 @@ class Command extends Component {
               <Button
                 text="Start request"
                 onClick={this.handleRequestClick}
-                disabled={!isEndpointValid}
+                disabled={!isEndpointValid || !isPayloadValid}
               />
             </div>
           </form>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { colors, Alert, Button, Spacing, Tag, Text } from 'react-elemental';
+import { colors, Alert, Spacing, Tabs, Tag, Text } from 'react-elemental';
 import { startProgress, endProgress } from 'app/redux/actions/progress';
 import { setSelectedMission } from 'app/redux/actions/drone';
 import BackNav from 'app/react/components/ui/back-nav';
@@ -17,9 +17,9 @@ const TAB_EVENT_LOG = 'event-log';
 const TAB_CAMERA = 'camera';
 
 const TAB_TEXT = {
-  [TAB_COMMAND]: 'Command',
-  [TAB_EVENT_LOG]: 'Event log',
-  [TAB_CAMERA]: 'Camera',
+  [TAB_COMMAND]: 'COMMAND',
+  [TAB_EVENT_LOG]: 'EVENT LOG',
+  [TAB_CAMERA]: 'CAMERA',
 };
 
 /**
@@ -73,7 +73,7 @@ class MissionControlContainer extends Component {
     });
   };
 
-  handleTabClick = (tab) => () => this.setState({ tab });
+  handleChange = (tab) => this.setState({ tab });
 
   render() {
     const {
@@ -107,13 +107,6 @@ class MissionControlContainer extends Component {
           droneIP={droneIP}
         />
       ),
-    };
-
-    const unselectedTabProps = {
-      secondary: true,
-      style: {
-        padding: '8px 16px',
-      },
     };
 
     return (
@@ -150,15 +143,15 @@ class MissionControlContainer extends Component {
         </Spacing>
 
         <Spacing bottom>
-          {[TAB_COMMAND, TAB_EVENT_LOG, TAB_CAMERA].map((controlTab) => (
-            <Spacing key={controlTab} size="tiny" right inline>
-              <Button
-                text={TAB_TEXT[controlTab]}
-                onClick={this.handleTabClick(controlTab)}
-                {...controlTab !== tab && unselectedTabProps}
-              />
-            </Spacing>
-          ))}
+          <Tabs
+            value={tab}
+            options={[
+              { value: TAB_COMMAND, label: TAB_TEXT[TAB_COMMAND] },
+              { value: TAB_EVENT_LOG, label: TAB_TEXT[TAB_EVENT_LOG] },
+              { value: TAB_CAMERA, label: TAB_TEXT[TAB_CAMERA] },
+            ]}
+            onChange={this.handleChange}
+          />
         </Spacing>
 
         {controlContainers[tab]}

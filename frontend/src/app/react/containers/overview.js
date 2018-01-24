@@ -42,7 +42,7 @@ class OverviewContainer extends Component {
     const isFullView = !selectedDrone || !isControlPanelVisible;
 
     return (
-      <div>
+      <div style={{ overflow: 'hidden' }}>
         <Helmet>
           <title>Skycontrol</title>
         </Helmet>

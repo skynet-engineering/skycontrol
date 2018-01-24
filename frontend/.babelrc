@@ -1,18 +1,13 @@
 {
   "env": {
     "production": {
-      "presets": [
-        ["es2015", {"modules": false}],
-        "react",
-        "stage-0"
-      ],
       "plugins": [
         ["transform-react-remove-prop-types", {"removeImports": true}]
       ]
     }
   },
   "presets": [
-    "es2015",
+    "env",
     "react",
     "stage-0"
   ],

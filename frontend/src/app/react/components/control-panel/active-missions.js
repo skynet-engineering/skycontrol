@@ -27,17 +27,20 @@ class MissionLink extends Component {
 
     return (
       <Spacing size="small" bottom>
-        <Link
-          onMouseEnter={this.handleHoverStateChange(true)}
-          onMouseLeave={this.handleHoverStateChange(false)}
-          onClick={onClick}
-          plain
-        >
-          {text}
-          <span style={arrowStyle}>
-            <KeyboardArrowRight />
-          </span>
-        </Link>
+        <Text color="primary">
+          <Link
+            type="plain"
+            activeColor="black"
+            onMouseEnter={this.handleHoverStateChange(true)}
+            onMouseLeave={this.handleHoverStateChange(false)}
+            onClick={onClick}
+          >
+            {text}
+            <span style={arrowStyle}>
+              <KeyboardArrowRight />
+            </span>
+          </Link>
+        </Text>
       </Spacing>
     );
   }

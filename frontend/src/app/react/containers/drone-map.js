@@ -35,10 +35,10 @@ class DroneMapContainer extends Component {
   state = { droneStatus: {}, isOnline: {} };
 
   componentDidUpdate(prevProps) {
-    const { drones: { isLoaded: isNowLoaded, data: droneIPs = [] } } = this.props;
+    const { drones: { isLoaded: isNowLoaded, data: drones = [] } } = this.props;
 
     if (!prevProps.drones.isLoaded && isNowLoaded) {
-      droneIPs.forEach(this.refreshFlightStatus.bind(this));
+      drones.map(({ ip }) => ip).forEach(this.refreshFlightStatus.bind(this));
     }
   }
 
@@ -119,9 +119,8 @@ export default compose(
   withOptions,
   withResource({
     key: 'drones',
+    method: 'GET',
     endpoint: '/api/discover',
-    method: 'POST',
-    data: () => ({}),
   }),
   connect(null, mapDispatchToProps),
 )(DroneMapContainer);

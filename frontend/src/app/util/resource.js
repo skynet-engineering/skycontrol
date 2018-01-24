@@ -11,7 +11,9 @@ const resource = ({ endpoint, method, data }, cb) => fetch(endpoint, {
   headers: {
     'Content-Type': 'application/json',
   },
-  ...data && { body: JSON.stringify(data) },
+  ...Object.keys(data).length &&
+    !['HEAD', 'GET'].includes(method) &&
+    { body: JSON.stringify(data) },
 })
   .then((resp) => resp.json())
   .then(({ data: respData }) => cb(null, respData))
