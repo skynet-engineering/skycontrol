@@ -27,7 +27,7 @@ const DroneMap = ({
       airspeed,
       heading,
       battery,
-      status,
+      mode,
     } = droneStatus[droneIP];
     const online = isOnline[droneIP];
     const keyMap = infoKeyText(online);
@@ -52,7 +52,7 @@ const DroneMap = ({
           { key: keyMap('Airspeed'), value: `${airspeed.toFixed(3)} m/s` },
           { key: keyMap('Heading'), value: `${heading} degrees` },
           { key: keyMap('Battery'), value: `${battery} V` },
-          { key: keyMap('Status'), value: status },
+          { key: keyMap('Mode'), value: mode },
         ]}
       />
     );
